@@ -13,6 +13,11 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+html, body{
+  height:100%;
+  overflow-y:auto;
+}
+
 body{
   min-height:100vh;
   background:#000;
@@ -20,9 +25,9 @@ body{
   justify-content:center;
   align-items:flex-start;
   color:#fff;
-  overflow:hidden;
 }
 
+/* animated background */
 body::before{
   content:"";
   position:fixed;
@@ -32,6 +37,7 @@ body::before{
     radial-gradient(circle, rgba(255,255,255,.6) 1px, transparent 2px);
   background-size:120px 120px, 60px 60px;
   animation:bgmove 18s linear infinite;
+  z-index:-1;
 }
 
 @keyframes bgmove{
@@ -42,8 +48,7 @@ body::before{
 .container{
   width:100%;
   max-width:380px;
-  padding:30px 20px;
-  z-index:1;
+  padding:30px 20px 80px;
 }
 
 .add-btn{
@@ -123,41 +128,47 @@ body::before{
 href="https://discord.com/oauth2/authorize?client_id=1459837198005440543&permissions=8&integration_type=0&scope=bot"
 target="_blank">ADD BOT</a>
 
-<!-- EXISTING -->
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.kill</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">nuk3 server</div><div class="cmd-box"><span>.kill</span><span class="copy" onclick="copyCmd('.kill',this)">⎙</span></div></div>
+<!-- COMMANDS -->
+<script>
+const cmds = [
+  [".kill","nuk3 server"],
+  [".banall","ban all"],
+  [".admin","get admin"],
+  [".roles","roles"],
+  [".c_channels","create channels"],
+  [".admin_all","admin all"],
+  [".lock_all","lock all"],
+  [".delchannels","delete channels"],
+  [".leaderboard","leaderboard"],
+  [".unlock_all","unlock all"],
+  [".nsfw_all","nsfw all"],
+  [".unsfw_all","unsfw all"],
+  [".delrules","delete rules"],
+  [".rename_all","rename all"],
+  [".delroles","delete roles"],
+  [".getwebhooks","get webhooks"],
+  [".cloneserver","clone server"]
+];
 
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.banall</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">banall</div><div class="cmd-box"><span>.banall</span><span class="copy" onclick="copyCmd('.banall',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.admin</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">get admin</div><div class="cmd-box"><span>.admin</span><span class="copy" onclick="copyCmd('.admin',this)">⎙</span></div></div>
-
-<!-- NEW COMMANDS -->
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.roles</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">roles</div><div class="cmd-box"><span>.roles</span><span class="copy" onclick="copyCmd('.roles',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.c_channels</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">create channels</div><div class="cmd-box"><span>.c_channels</span><span class="copy" onclick="copyCmd('.c_channels',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.admin_all</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">admin all</div><div class="cmd-box"><span>.admin_all</span><span class="copy" onclick="copyCmd('.admin_all',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.lock_all</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">lock all</div><div class="cmd-box"><span>.lock_all</span><span class="copy" onclick="copyCmd('.lock_all',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.delchannels</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">delete channels</div><div class="cmd-box"><span>.delchannels</span><span class="copy" onclick="copyCmd('.delchannels',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.leaderboard</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">leaderboard</div><div class="cmd-box"><span>.leaderboard</span><span class="copy" onclick="copyCmd('.leaderboard',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.unlock_all</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">unlock all</div><div class="cmd-box"><span>.unlock_all</span><span class="copy" onclick="copyCmd('.unlock_all',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.nsfw_all</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">nsfw all</div><div class="cmd-box"><span>.nsfw_all</span><span class="copy" onclick="copyCmd('.nsfw_all',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.unsfw_all</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">unsfw all</div><div class="cmd-box"><span>.unsfw_all</span><span class="copy" onclick="copyCmd('.unsfw_all',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.delrules</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">delete rules</div><div class="cmd-box"><span>.delrules</span><span class="copy" onclick="copyCmd('.delrules',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.rename_all</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">rename all</div><div class="cmd-box"><span>.rename_all</span><span class="copy" onclick="copyCmd('.rename_all',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.delroles</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">delete roles</div><div class="cmd-box"><span>.delroles</span><span class="copy" onclick="copyCmd('.delroles',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.getwebhooks</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">get webhooks</div><div class="cmd-box"><span>.getwebhooks</span><span class="copy" onclick="copyCmd('.getwebhooks',this)">⎙</span></div></div>
-
-<div class="card"><div class="card-top"><div class="lock">🔒</div><div><div class="title">.cloneserver</div><div class="sub">Free Commands • core tools</div></div></div><div class="desc">clone server</div><div class="cmd-box"><span>.cloneserver</span><span class="copy" onclick="copyCmd('.cloneserver',this)">⎙</span></div></div>
+cmds.forEach(c=>{
+  document.write(`
+  <div class="card">
+    <div class="card-top">
+      <div class="lock">🔒</div>
+      <div>
+        <div class="title">${c[0]}</div>
+        <div class="sub">Free Commands • core tools</div>
+      </div>
+    </div>
+    <div class="desc">${c[1]}</div>
+    <div class="cmd-box">
+      <span>${c[0]}</span>
+      <span class="copy" onclick="copyCmd('${c[0]}',this)">⎙</span>
+    </div>
+  </div>
+  `);
+});
+</script>
 
 </div>
 
