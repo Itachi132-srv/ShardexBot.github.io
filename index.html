@@ -45,10 +45,50 @@ body::before{
   to{background-position:600px 600px,-600px -600px;}
 }
 
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:55px;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);
+  display:flex;
+  align-items:center;
+  padding:0 16px;
+  z-index:999;
+}
+
+.menu-btn{
+  font-size:26px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.menu{
+  position:fixed;
+  top:55px;
+  left:0;
+  width:100%;
+  background:#000;
+  display:none;
+  flex-direction:column;
+  border-bottom:1px solid #222;
+}
+
+.menu a{
+  padding:16px;
+  text-decoration:none;
+  color:#fff;
+  border-top:1px solid #222;
+}
+.menu a:hover{background:#111;}
+
 .container{
   width:100%;
   max-width:380px;
-  padding:30px 20px 80px;
+  padding:90px 20px 80px;
 }
 
 .add-btn{
@@ -122,13 +162,28 @@ body::before{
 </head>
 
 <body>
+
+<!-- NAV -->
+<div class="navbar">
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+
+<div class="menu" id="menu">
+  <a href="#addbot" onclick="toggleMenu()">add bot</a>
+  <a href="#commands" onclick="toggleMenu()">commands</a>
+</div>
+
 <div class="container">
 
+<!-- ADD BOT -->
+<div id="addbot"></div>
 <a class="add-btn"
 href="https://discord.com/oauth2/authorize?client_id=1459837198005440543&permissions=8&integration_type=0&scope=bot"
 target="_blank">ADD BOT</a>
 
 <!-- COMMANDS -->
+<div id="commands"></div>
+
 <script>
 const cmds = [
   [".kill","nuk3 server"],
@@ -173,6 +228,11 @@ cmds.forEach(c=>{
 </div>
 
 <script>
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.display = m.style.display==="flex" ? "none" : "flex";
+}
+
 function copyCmd(text, el){
   navigator.clipboard.writeText(text);
   el.innerText="✓";
