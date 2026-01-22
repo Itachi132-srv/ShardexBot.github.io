@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +23,6 @@ body{
   overflow:hidden;
 }
 
-/* animated white dots background */
 body::before{
   content:"";
   position:fixed;
@@ -48,7 +46,6 @@ body::before{
   z-index:1;
 }
 
-/* ONLY ONE ADD BOT BUTTON (TOP) */
 .add-btn{
   display:block;
   text-align:center;
@@ -61,29 +58,15 @@ body::before{
   font-weight:800;
   font-size:18px;
   letter-spacing:1px;
-  box-shadow:
-    0 0 15px #fff,
-    0 0 35px rgba(255,255,255,.9),
-    0 0 60px rgba(255,255,255,.6);
+  box-shadow:0 0 15px #fff,0 0 35px rgba(255,255,255,.9),0 0 60px rgba(255,255,255,.6);
   animation:neon 2.5s ease-in-out infinite;
 }
 
 @keyframes neon{
-  0%,100%{
-    box-shadow:
-      0 0 15px #fff,
-      0 0 35px rgba(255,255,255,.9),
-      0 0 60px rgba(255,255,255,.6);
-  }
-  50%{
-    box-shadow:
-      0 0 25px #fff,
-      0 0 55px rgba(255,255,255,1),
-      0 0 90px rgba(255,255,255,.9);
-  }
+  0%,100%{box-shadow:0 0 15px #fff,0 0 35px rgba(255,255,255,.9),0 0 60px rgba(255,255,255,.6);}
+  50%{box-shadow:0 0 25px #fff,0 0 55px rgba(255,255,255,1),0 0 90px rgba(255,255,255,.9);}
 }
 
-/* command card */
 .card{
   background:rgba(0,0,0,.6);
   border-radius:22px;
@@ -109,20 +92,9 @@ body::before{
   justify-content:center;
 }
 
-.title{
-  font-size:20px;
-  font-weight:700;
-}
-
-.sub{
-  font-size:14px;
-  color:#9aa0a6;
-}
-
-.desc{
-  margin:14px 0;
-  color:#cfcfcf;
-}
+.title{font-size:20px;font-weight:700;}
+.sub{font-size:14px;color:#9aa0a6;}
+.desc{margin:14px 0;color:#cfcfcf;}
 
 .cmd-box{
   background:#0b0b0b;
@@ -140,68 +112,45 @@ body::before{
   border-radius:10px;
   padding:6px 12px;
 }
-
-.copy:hover{
-  background:rgba(255,255,255,.25);
-}
+.copy:hover{background:rgba(255,255,255,.25);}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<!-- TOP ADD BOT BUTTON WITH CORRECT LINK -->
-<a class="add-btn"
-href="https://discord.com/oauth2/authorize?client_id=1459837198005440543&permissions=8&integration_type=0&scope=bot"
-target="_blank">
+<a class="add-btn" href="https://discord.com/oauth2/authorize?client_id=1459837198005440543&permissions=8&integration_type=0&scope=bot" target="_blank">
 ADD BOT
 </a>
 
-<div class="card">
-  <div class="card-top">
-    <div class="lock">🔒</div>
-    <div>
-      <div class="title">.kill</div>
-      <div class="sub">Free Commands • core tools</div>
-    </div>
-  </div>
-  <div class="desc">nuk3 server</div>
-  <div class="cmd-box">
-    <span>.kill</span>
-    <span class="copy" onclick="copyCmd('.kill',this)">⎙</span>
-  </div>
-</div>
+<!-- COMMANDS START -->
 
-<div class="card">
-  <div class="card-top">
-    <div class="lock">🔒</div>
-    <div>
-      <div class="title">.banall</div>
-      <div class="sub">Free Commands • core tools</div>
-    </div>
-  </div>
-  <div class="desc">banall</div>
-  <div class="cmd-box">
-    <span>.banall</span>
-    <span class="copy" onclick="copyCmd('.banall',this)">⎙</span>
-  </div>
-</div>
+<script>
+const commands = [
+".kill",".banall",".admin",".roles",".c_channels",".admin_all",".lock_all",
+".delchannels",".leaderboard",".unlock_all",".nsfw_all",".unsfw_all",
+".delrules",".rename_all",".delroles",".getwebhooks",".cloneserver"
+];
 
+commands.forEach(cmd=>{
+document.write(`
 <div class="card">
   <div class="card-top">
     <div class="lock">🔒</div>
     <div>
-      <div class="title">.admin</div>
+      <div class="title">${cmd}</div>
       <div class="sub">Free Commands • core tools</div>
     </div>
   </div>
-  <div class="desc">get admin</div>
+  <div class="desc">${cmd.replace(".","")} command</div>
   <div class="cmd-box">
-    <span>.admin</span>
-    <span class="copy" onclick="copyCmd('.admin',this)">⎙</span>
+    <span>${cmd}</span>
+    <span class="copy" onclick="copyCmd('${cmd}',this)">⎙</span>
   </div>
 </div>
+`);
+});
+</script>
 
 </div>
 
