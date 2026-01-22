@@ -148,6 +148,7 @@ body::before{
   padding:6px 12px;
   border-radius:10px;
 }
+.copy:hover{background:rgba(255,255,255,.25);}
 </style>
 </head>
 
@@ -196,9 +197,23 @@ function showSection(id){
 
 /* commands load */
 const cmds=[
-[".kill","nuk3 server"],
-[".banall","ban all"],
-[".admin","get admin"]
+  [".kill","nuk3 server"],
+  [".banall","ban all"],
+  [".admin","get admin"],
+  [".roles","manage roles"],
+  [".c_channels","create channels"],
+  [".admin_all","admin all"],
+  [".lock_all","lock all channels"],
+  [".delchannels","delete all channels"],
+  [".leaderboard","server leaderboard"],
+  [".unlock_all","unlock all channels"],
+  [".nsfw_all","nsfw all channels"],
+  [".unsfw_all","remove nsfw"],
+  [".delrules","delete rules"],
+  [".rename_all","rename everything"],
+  [".delroles","delete all roles"],
+  [".getwebhooks","get all webhooks"],
+  [".cloneserver","clone server"]
 ];
 
 const cmdBox=document.getElementById("commands");
