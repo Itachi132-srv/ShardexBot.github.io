@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Bot</title>
+<title>Shardex Guild Bot</title>
 
 <style>
 *{
@@ -13,21 +13,17 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-html, body{
+html,body{
   height:100%;
   overflow-y:auto;
 }
 
 body{
-  min-height:100vh;
   background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
   color:#fff;
 }
 
-/* animated background */
+/* animated bg */
 body::before{
   content:"";
   position:fixed;
@@ -35,35 +31,31 @@ body::before{
   background:
     radial-gradient(circle, rgba(255,255,255,1) 2px, transparent 3px),
     radial-gradient(circle, rgba(255,255,255,.6) 1px, transparent 2px);
-  background-size:120px 120px, 60px 60px;
+  background-size:120px 120px,60px 60px;
   animation:bgmove 18s linear infinite;
   z-index:-1;
 }
-
 @keyframes bgmove{
   from{background-position:0 0,0 0;}
   to{background-position:600px 600px,-600px -600px;}
 }
 
-/* NAVBAR */
+/* NAV */
 .navbar{
   position:fixed;
   top:0;
   left:0;
   width:100%;
   height:55px;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,.9);
   display:flex;
   align-items:center;
   padding:0 16px;
   z-index:999;
 }
-
 .menu-btn{
   font-size:26px;
   cursor:pointer;
-  user-select:none;
 }
 
 .menu{
@@ -74,59 +66,62 @@ body::before{
   background:#000;
   display:none;
   flex-direction:column;
-  border-bottom:1px solid #222;
 }
-
 .menu a{
   padding:16px;
-  text-decoration:none;
   color:#fff;
+  text-decoration:none;
   border-top:1px solid #222;
 }
 .menu a:hover{background:#111;}
 
 .container{
-  width:100%;
   max-width:380px;
+  margin:auto;
   padding:90px 20px 80px;
 }
 
-.add-btn{
-  display:block;
+/* SECTIONS */
+.section{display:none;}
+.section.active{display:block;}
+
+/* HOME */
+.home-title{
   text-align:center;
-  padding:18px;
-  border-radius:18px;
-  margin-bottom:32px;
+  font-size:32px;
+  font-weight:900;
+  margin-top:80px;
+  letter-spacing:2px;
+}
+
+/* ADD BOT */
+.add-btn{
+  width:160px;
+  height:160px;
+  margin:100px auto 0;
+  border-radius:50%;
   background:#fff;
   color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
   text-decoration:none;
-  font-weight:800;
-  font-size:18px;
-  letter-spacing:1px;
-  box-shadow:0 0 15px #fff,0 0 35px rgba(255,255,255,.9),0 0 60px rgba(255,255,255,.6);
-  animation:neon 2.5s ease-in-out infinite;
+  box-shadow:0 0 25px #fff,0 0 60px rgba(255,255,255,.8);
 }
 
-@keyframes neon{
-  0%,100%{box-shadow:0 0 15px #fff,0 0 35px rgba(255,255,255,.9),0 0 60px rgba(255,255,255,.6);}
-  50%{box-shadow:0 0 25px #fff,0 0 55px rgba(255,255,255,1),0 0 90px rgba(255,255,255,.9);}
-}
-
+/* COMMANDS */
 .card{
   background:rgba(0,0,0,.6);
   border-radius:22px;
   padding:18px;
   margin-bottom:24px;
-  backdrop-filter: blur(14px);
-  box-shadow:0 0 35px rgba(255,255,255,.08);
 }
-
 .card-top{
   display:flex;
   gap:12px;
   align-items:center;
 }
-
 .lock{
   width:42px;
   height:42px;
@@ -136,77 +131,79 @@ body::before{
   align-items:center;
   justify-content:center;
 }
-
 .title{font-size:20px;font-weight:700;}
 .sub{font-size:14px;color:#9aa0a6;}
 .desc{margin:14px 0;color:#cfcfcf;}
-
 .cmd-box{
   background:#0b0b0b;
   border-radius:14px;
   padding:12px 14px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   font-family:monospace;
 }
-
 .copy{
   cursor:pointer;
   background:rgba(255,255,255,.1);
-  border-radius:10px;
   padding:6px 12px;
+  border-radius:10px;
 }
-.copy:hover{background:rgba(255,255,255,.25);}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <div class="navbar">
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </div>
 
 <div class="menu" id="menu">
-  <a href="#addbot" onclick="toggleMenu()">add bot</a>
-  <a href="#commands" onclick="toggleMenu()">commands</a>
+  <a onclick="showSection('home')">home</a>
+  <a onclick="showSection('addbot')">add bot</a>
+  <a onclick="showSection('commands')">commands</a>
 </div>
 
 <div class="container">
 
+<!-- HOME -->
+<div id="home" class="section active">
+  <div class="home-title">SHARDEX<br>GUILD BOT</div>
+</div>
+
 <!-- ADD BOT -->
-<div id="addbot"></div>
-<a class="add-btn"
-href="https://discord.com/oauth2/authorize?client_id=1459837198005440543&permissions=8&integration_type=0&scope=bot"
-target="_blank">ADD BOT</a>
+<div id="addbot" class="section">
+  <a class="add-btn"
+   href="https://discord.com/oauth2/authorize?client_id=1459837198005440543&permissions=8&integration_type=0&scope=bot"
+   target="_blank">ADD BOT</a>
+</div>
 
 <!-- COMMANDS -->
-<div id="commands"></div>
+<div id="commands" class="section"></div>
+
+</div>
 
 <script>
-const cmds = [
-  [".kill","nuk3 server"],
-  [".banall","ban all"],
-  [".admin","get admin"],
-  [".roles","roles"],
-  [".c_channels","create channels"],
-  [".admin_all","admin all"],
-  [".lock_all","lock all"],
-  [".delchannels","delete channels"],
-  [".leaderboard","leaderboard"],
-  [".unlock_all","unlock all"],
-  [".nsfw_all","nsfw all"],
-  [".unsfw_all","unsfw all"],
-  [".delrules","delete rules"],
-  [".rename_all","rename all"],
-  [".delroles","delete roles"],
-  [".getwebhooks","get webhooks"],
-  [".cloneserver","clone server"]
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.display=m.style.display==="flex"?"none":"flex";
+}
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById("menu").style.display="none";
+}
+
+/* commands load */
+const cmds=[
+[".kill","nuk3 server"],
+[".banall","ban all"],
+[".admin","get admin"]
 ];
 
+const cmdBox=document.getElementById("commands");
 cmds.forEach(c=>{
-  document.write(`
+  cmdBox.innerHTML+=`
   <div class="card">
     <div class="card-top">
       <div class="lock">🔒</div>
@@ -218,26 +215,10 @@ cmds.forEach(c=>{
     <div class="desc">${c[1]}</div>
     <div class="cmd-box">
       <span>${c[0]}</span>
-      <span class="copy" onclick="copyCmd('${c[0]}',this)">⎙</span>
+      <span class="copy" onclick="navigator.clipboard.writeText('${c[0]}')">⎙</span>
     </div>
-  </div>
-  `);
+  </div>`;
 });
-</script>
-
-</div>
-
-<script>
-function toggleMenu(){
-  const m=document.getElementById("menu");
-  m.style.display = m.style.display==="flex" ? "none" : "flex";
-}
-
-function copyCmd(text, el){
-  navigator.clipboard.writeText(text);
-  el.innerText="✓";
-  setTimeout(()=>el.innerText="⎙",1200);
-}
 </script>
 
 </body>
