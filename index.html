@@ -6,170 +6,213 @@
 <title>Shardex Guild Bot</title>
 
 <!-- Professional Font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#0b0d12;
-  --card:#15171c;
-  --border:#242730;
+  --bg:#000000;
+  --card:#0f1116;
+  --border:#1c1f26;
   --text:#ffffff;
-  --muted:#b9bbbe;
+  --muted:#9aa0a6;
   --blurple:#5865F2;
   --blurple-dark:#4752c4;
 }
 
+/* RESET */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
   font-family:'Inter', system-ui, sans-serif;
+  font-variant: small-caps;
+  letter-spacing:.06em;
 }
 
 html,body{
   height:100%;
   background:var(--bg);
   color:var(--text);
+  overflow-x:hidden;
 }
 
-/* NAV */
+/* ===================== */
+/* FALLING BLACK DOTS BG */
+/* ===================== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.08) 1.5px, transparent 2px);
+  background-size:90px 90px;
+  animation:dotsFall 30s linear infinite;
+  z-index:-2;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 2px);
+  background-size:140px 140px;
+  animation:dotsFallReverse 50s linear infinite;
+  z-index:-1;
+}
+@keyframes dotsFall{
+  from{background-position:0 -1000px;}
+  to{background-position:0 1000px;}
+}
+@keyframes dotsFallReverse{
+  from{background-position:0 1000px;}
+  to{background-position:0 -1000px;}
+}
+
+/* NAVBAR */
 .navbar{
   position:fixed;
   top:0;
   width:100%;
-  height:56px;
-  background:#0f1117;
+  height:58px;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
   display:flex;
   align-items:center;
   padding:0 16px;
-  border-bottom:1px solid var(--border);
   z-index:999;
 }
 
-/* professional menu button */
+/* ULTRA PROFESSIONAL MENU BUTTON */
 .menu-btn{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:#161922;
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  background:linear-gradient(145deg,#0f1218,#080a0f);
+  border:1px solid #1f2430;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:22px;
+  font-size:20px;
   cursor:pointer;
-  transition:.2s;
+  transition:.25s ease;
 }
 .menu-btn:hover{
-  background:#1e2230;
+  background:#141824;
+  transform:scale(1.04);
 }
 
-/* menu */
+/* MENU */
 .menu{
   position:fixed;
-  top:56px;
+  top:58px;
   width:100%;
-  background:#0f1117;
+  background:rgba(0,0,0,.9);
+  backdrop-filter:blur(14px);
   display:none;
   flex-direction:column;
   border-bottom:1px solid var(--border);
 }
 .menu a{
-  padding:16px;
+  padding:18px;
   color:#fff;
   text-decoration:none;
   border-top:1px solid var(--border);
-  font-weight:600;
+  font-weight:700;
 }
-.menu a:hover{background:#1a1d26;}
+.menu a:hover{
+  background:#0e1118;
+}
 
+/* LAYOUT */
 .container{
   max-width:420px;
   margin:auto;
-  padding:90px 18px 90px;
+  padding:90px 18px 100px;
 }
-
-/* sections */
 .section{display:none;}
 .section.active{display:block;}
 
 /* HOME */
 .hero{
   text-align:center;
-  margin-top:60px;
+  margin-top:70px;
 }
 .hero h1{
-  font-size:36px;
+  font-size:34px;
   font-weight:900;
-  letter-spacing:.5px;
 }
 .hero p{
-  margin-top:14px;
-  font-size:15px;
+  margin-top:16px;
+  font-size:14px;
   color:var(--muted);
-  line-height:1.6;
+  line-height:1.7;
 }
+
 .hero-buttons{
   display:flex;
   justify-content:center;
-  gap:14px;
-  margin-top:30px;
+  gap:16px;
+  margin-top:34px;
   flex-wrap:wrap;
 }
+
 .primary-btn{
   background:var(--blurple);
   color:#fff;
-  padding:14px 26px;
-  border-radius:12px;
+  padding:14px 28px;
+  border-radius:14px;
   text-decoration:none;
   font-weight:800;
 }
 .primary-btn:hover{background:var(--blurple-dark);}
+
 .secondary-btn{
-  background:#1a1d26;
+  background:#0e1118;
+  border:1px solid var(--border);
   color:#fff;
-  padding:14px 26px;
-  border-radius:12px;
+  padding:14px 28px;
+  border-radius:14px;
   text-decoration:none;
   font-weight:700;
-  border:1px solid var(--border);
 }
-.secondary-btn:hover{background:#202432;}
+.secondary-btn:hover{background:#151a26;}
 
-/* stats */
+/* STATS */
 .stats{
-  margin-top:60px;
+  margin-top:70px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px;
+  gap:16px;
 }
 .stat-card{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px 10px;
+  border-radius:18px;
+  padding:22px 10px;
   text-align:center;
 }
 .stat-card h2{
-  font-size:26px;
+  font-size:24px;
   font-weight:900;
 }
 .stat-card span{
-  font-size:13px;
-  color:#9aa0a6;
+  font-size:12px;
+  color:var(--muted);
 }
 
 /* ADD BOT */
 .add-btn{
-  width:200px;
-  height:56px;
-  margin:120px auto 0;
-  border-radius:14px;
+  width:210px;
+  height:58px;
+  margin:130px auto 0;
+  border-radius:16px;
   background:var(--blurple);
   color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight:800;
+  font-weight:900;
   text-decoration:none;
 }
 .add-btn:hover{background:var(--blurple-dark);}
@@ -178,9 +221,9 @@ html,body{
 .card{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:22px;
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:24px;
 }
 .card-top{
   display:flex;
@@ -188,33 +231,33 @@ html,body{
   align-items:center;
 }
 .lock{
-  width:44px;
-  height:44px;
-  border-radius:14px;
+  width:46px;
+  height:46px;
+  border-radius:16px;
   background:rgba(88,101,242,.15);
   display:flex;
   align-items:center;
   justify-content:center;
 }
-.title{font-size:20px;font-weight:800;}
-.sub{font-size:13px;color:#9aa0a6;}
+.title{font-size:18px;font-weight:900;}
+.sub{font-size:12px;color:var(--muted);}
 .desc{margin:14px 0;color:#d0d3d7;}
 .cmd-box{
-  background:#0c0e13;
-  border-radius:12px;
+  background:#080a0f;
+  border-radius:14px;
   padding:12px 14px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  font-family:monospace;
   border:1px solid var(--border);
+  font-family:monospace;
 }
 .copy{
-  cursor:pointer;
   background:var(--blurple);
   padding:6px 14px;
   border-radius:10px;
-  font-weight:700;
+  font-weight:800;
+  cursor:pointer;
 }
 .copy:hover{background:var(--blurple-dark);}
 </style>
@@ -237,9 +280,9 @@ html,body{
 <div id="home" class="section active">
   <div class="hero">
     <h1>Shardex Guild Bot</h1>
-    <p>Professional Discord guild management bot built for control, speed and reliability.</p>
+    <p>Elite Discord guild management bot designed for control, stability and performance.</p>
     <div class="hero-buttons">
-      <a onclick="showSection('addbot')" class="primary-btn">Add to Discord</a>
+      <a onclick="showSection('addbot')" class="primary-btn">Add To Discord</a>
       <a onclick="showSection('commands')" class="secondary-btn">View Commands</a>
     </div>
   </div>
@@ -254,7 +297,7 @@ html,body{
 <div id="addbot" class="section">
   <a class="add-btn"
    href="https://discord.com/oauth2/authorize?client_id=1465453257437483169&permissions=8&integration_type=0&scope=bot"
-   target="_blank">ADD TO DISCORD</a>
+   target="_blank">Add To Discord</a>
 </div>
 
 <div id="commands" class="section"></div>
@@ -298,13 +341,13 @@ cmds.forEach(c=>{
       <div class="lock">🔒</div>
       <div>
         <div class="title">${c[0]}</div>
-        <div class="sub">Free Commands • core tools</div>
+        <div class="sub">Core Command</div>
       </div>
     </div>
     <div class="desc">${c[1]}</div>
     <div class="cmd-box">
       <span>${c[0]}</span>
-      <span class="copy" onclick="navigator.clipboard.writeText('${c[0]}')">COPY</span>
+      <span class="copy" onclick="navigator.clipboard.writeText('${c[0]}')">Copy</span>
     </div>
   </div>`;
 });
